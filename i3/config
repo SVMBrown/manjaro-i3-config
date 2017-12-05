@@ -46,7 +46,7 @@ bindsym $mod+z exec --no-startup-id morc_menu
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
-bindsym $mod+Ctrl+m exec pavucontrol
+# bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -71,7 +71,7 @@ bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+slash exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-bindsym $mod+g exec google-chrome-stable
+bindsym $mod+w exec firefox
 
 focus_follows_mouse no
 
@@ -119,15 +119,15 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 # split orientation
 # bindsym $mod+h split h;exec notify-send 'tile horizontally'
 # bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
+bindsym $mod+slash split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+bindsym $mod+backslash layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -136,7 +136,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Shift+s sticky toggle
+# bindsym $mod+Shift+s sticky toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -178,6 +178,10 @@ set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
+set $wsChat 
+set $wsGit 
+set $wsEmail 
+set $wsEditor (λ)
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -188,6 +192,10 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+s workspace $wsChat
+bindsym $mod+g workspace $wsGit
+bindsym $mod+m workspace $wsEmail
+bindsym $mod+e workspace $wsEditor
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -198,6 +206,10 @@ bindsym $mod+Ctrl+5 move container to workspace $ws5
 bindsym $mod+Ctrl+6 move container to workspace $ws6
 bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+s move container to workspace $wsChat
+bindsym $mod+Ctrl+g move container to workspace $wsGit
+bindsym $mod+Ctrl+m move container to workspace $wsEmail
+bindsym $mod+Ctrl+e move container to workspace $wsEditor
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -208,12 +220,18 @@ bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+s move container to workspace $wsChat; workspace $wsChat
+bindsym $mod+Shift+g move container to workspace $wsGit; workspace $wsGit
+bindsym $mod+Shift+m move container to workspace $wsEmail; workspace $wsEmail
+bindsym $mod+Shift+e move container to workspace $wsEditor; workspace $wsEditor
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
+assign [class="Thunderbird"] $wsEmail
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
+assign [class="Slack"] $wsChat
+assign [class="GitKraken"] $wsGit
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -254,7 +272,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
@@ -408,7 +426,7 @@ bar {
 }
 
 # hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                 border      backgr.     text        indic.      child_border
@@ -444,7 +462,7 @@ smart_borders on
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
+bindsym $mod+equal mode "$mode_gaps"
 
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
