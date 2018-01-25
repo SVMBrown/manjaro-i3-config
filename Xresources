@@ -21,25 +21,9 @@ XTerm*pointerColor: #16A085
 XTerm*faceName: Fixed
 XTerm*faceSize: 11
 
-!  /\
-! /||\
-!  ||
-! Base
-!---------------------------------------------------
-! New
-!  ||
-! \||/
-!  \/
-
-
-! Add Copy and paste keybindings on Shift-C-c and Shift-C-v
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 
-
-! Prevent ISO14755 mode
-! * I don't exactly know what this mode does, but I have never needed it
 URxvt.iso14755: false
 
-! Add perl clipboard extension
 URxvt.perl-ext-common: default,clipboard
